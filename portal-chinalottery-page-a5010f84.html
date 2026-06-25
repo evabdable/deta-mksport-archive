@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国竞彩网 · 故事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Noto Sans SC', 'PingFang SC', system-ui, -apple-system, sans-serif;
+            background-color: #f5f3f0;
+            color: #2c2b28;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 深色头图 — 故事氛围 */
+        .hero {
+            background: linear-gradient(145deg, #1e1d1b 0%, #2a2725 60%, #332f2b 100%);
+            padding: 5rem 1.5rem 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #d9b382, #b38b5f, #d9b382);
+            opacity: 0.4;
+        }
+
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #e6dace;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            color: #cdbcab;
+            max-width: 500px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(205, 188, 171, 0.2);
+            padding-top: 1rem;
+            display: inline-block;
+        }
+
+        /* 浅色正文区 */
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2.8rem 1.5rem 3.5rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .story-lead {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 2.4rem;
+            color: #3d3a35;
+            border-left: 3px solid #b38b5f;
+            padding-left: 1.2rem;
+            background: rgba(179, 139, 95, 0.04);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .story-lead strong {
+            font-weight: 500;
+            color: #5f4c36;
+        }
+
+        .section-block {
+            margin-bottom: 2.6rem;
+        }
+
+        .section-block p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            color: #3d3a35;
+        }
+
+        .section-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 特点卡片式列表 — 温和叙述 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem 1.8rem;
+            margin: 2rem 0 2.2rem;
+        }
+
+        .feature-item {
+            background: #faf8f6;
+            padding: 1.2rem 1.2rem 1.2rem 1.6rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border-left: 3px solid #d9b382;
+            transition: background 0.2s;
+        }
+
+        .feature-item:hover {
+            background: #f3efe9;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #4f4134;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-item span {
+            font-size: 0.92rem;
+            color: #5f554a;
+        }
+
+        /* 强调色链接 */
+        a {
+            color: #a07a4f;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 400;
+        }
+
+        a:hover {
+            color: #7d5f3c;
+            border-bottom-color: #b38b5f;
+        }
+
+        .accent-link {
+            color: #a07a4f;
+            border-bottom: 1px solid rgba(160, 122, 79, 0.25);
+        }
+
+        .accent-link:hover {
+            border-bottom-color: #b38b5f;
+        }
+
+        .ending-note {
+            margin-top: 2.8rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ded8d0;
+            font-size: 0.96rem;
+            color: #5d554b;
+            background: #faf8f5;
+            padding: 1.8rem 1.8rem 1.6rem;
+            border-radius: 14px;
+        }
+
+        .ending-note p {
+            margin-bottom: 0.5rem;
+        }
+
+        .ending-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-mini {
+            margin-top: 1.6rem;
+            background: #f5f2ed;
+            padding: 1.2rem 1.4rem;
+            border-radius: 10px;
+        }
+
+        .faq-mini dt {
+            font-weight: 500;
+            color: #4f4134;
+            margin-top: 0.8rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-mini dt:first-child {
+            margin-top: 0;
+        }
+
+        .faq-mini dd {
+            margin-left: 0.6rem;
+            font-size: 0.92rem;
+            color: #5a5147;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 3.2rem 1rem 2.4rem;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            .hero-sub {
+                font-size: 0.92rem;
+                padding-top: 0.8rem;
+            }
+            .container {
+                padding: 2rem 1rem 2.8rem;
+            }
+            .story-lead {
+                font-size: 1.1rem;
+                padding-left: 1rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 0.9rem;
+            }
+            .feature-item {
+                padding: 0.9rem 1rem 0.9rem 1.2rem;
+            }
+            .ending-note {
+                padding: 1.4rem 1rem;
+            }
+            .faq-mini {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.8rem 1rem;
+            font-size: 0.82rem;
+            color: #8b8277;
+            background: #edebe7;
+            border-top: 1px solid #ddd7cf;
+            margin-top: 1rem;
+        }
+
+        footer a {
+            color: #7f6b58;
+        }
+
+        footer a:hover {
+            color: #5f4c36;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图：安静开场 -->
+    <header class="hero">
+        <h1 class="hero-title">故事从一次选择开始</h1>
+        <p class="hero-sub">不是每一个入口都通向风景，<br>但有些人愿意慢慢走进去看看。</p>
+    </header>
+
+    <!-- 浅色正文区：承接段落 + 特点 + 温和结尾 -->
+    <main class="container">
+
+        <!-- 开场短句 + 承接 -->
+        <div class="story-lead">
+            <strong>中国竞彩网</strong>，一个名字里带着“竞”与“彩”的地方。很多人第一次听到它，以为是竞技与运气的简单拼合，但走近了才发现，它更像一面镜子，映照着人们对待胜负与期待的方式。
+        </div>
+
+        <!-- 承接段落：从主题展开 -->
+        <div class="section-block">
+            <p>竞彩的世界从来不只是胜负预测。它关联着凌晨的赛事回放、朋友间的轻松讨论、以及每个人心里那一点点“万一呢”的念想。而支撑这一切的，是一个稳定、透明、有边界的平台——人们通过它，把观察与判断变成一种参与，而不是仅仅坐在屏幕前观看。</p>
+            <p>在信息流动越来越快的今天，许多人开始重新审视自己与“选择”的关系。是凭直觉，还是参考数据？是相信过往，还是拥抱变化？这些问题没有标准答案，但<strong>一个可靠的平台至少让探索的过程更安心一些</strong>。如果你也好奇这种平静的参与感，不妨去 <a href="https://portal-chinalottery.com" class="accent-link">中国竞彩网</a> 看一看。那里没有喧哗的承诺，只有清晰的规则和真实的数据。</p>
+        </div>
+
+        <!-- 特点列表：卡片式温和叙述 -->
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong>透明规则</strong>
+                <span>每场比赛的赔率、赛程与结果都公开展示，没有隐藏的算法，也没有模糊的条款。</span>
+            </div>
+            <div class="feature-item">
+                <strong>多元赛事</strong>
+                <span>从欧洲五大联赛到亚洲焦点战，覆盖主流与次级联赛，满足不同观赛习惯。</span>
+            </div>
+            <div class="feature-item">
+                <strong>数据沉淀</strong>
+                <span>历史交锋、近期状态、进球分布…… 基础数据随手可查，辅助理性判断。</span>
+            </div>
+            <div class="feature-item">
+                <strong>边界清晰</strong>
+                <span>单场、过关、比分等多种玩法都有明确说明，不诱导过度投入，尊重个人选择。</span>
+            </div>
+        </div>
+
+        <!-- 场景化叙述：进一步丰富内容 -->
+        <div class="section-block">
+            <p>一个常见的场景是：周末晚上，三五好友聚在一起，打开直播，顺便聊起某场焦点战的走向。有人掏出手机翻看数据，有人凭记忆说出历史比分，最后大家笑着各自下了一个小预测。输赢不重要，重要的是那段时间里，每个人都认真参与了讨论——而 <a href="https://portal-chinalottery.com" class="accent-link">中国竞彩网</a> 恰好提供了这种讨论的支点：它不替你决定，但给你足够的信息去决定。</p>
+        </div>
+
+        <!-- FAQ 摘要：温和结尾前的小段落 -->
+        <div class="faq-mini">
+            <dl>
+                <dt>⚬ 这个平台适合新手吗？</dt>
+                <dd>界面设计偏向简洁，竞彩玩法有详细说明，花一点时间就能了解基本规则。没有强制引导，适合自己慢慢摸索。</dd>
+                <dt>⚬ 数据更新及时吗？</dt>
+                <dd>赛事信息与赔率变动保持同步，延迟在可接受范围内。不过建议重要场次提前确认，避免临近开赛时匆忙选择。</dd>
+                <dt>⚬ 除了竞彩，还有其他内容吗？</dt>
+                <dd>主要聚焦竞彩足球与篮球，没有冗余的附加板块。如果你喜欢专注，反而会觉得干净。</dd>
+            </dl>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="ending-note">
+            <p>任何选择都伴随着不确定性，这也是竞技的一部分魅力。平台能做的，是让规则清晰、信息透明，把决定权完全交还给你。</p>
+            <p>慢慢看，慢慢想，比匆忙下注更有意思。<br>如果你愿意，可以先从 <a href="https://portal-chinalottery.com" class="accent-link">中国竞彩网</a> 开始，不抱期待地浏览一遍——也许会发现一些之前没注意到的细节。</p>
+            <p style="font-size:0.9rem; color:#7b7166; margin-top:0.8rem;">—— 一篇没有结论的故事，留给翻开它的人。</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <span>内容来源于公开信息 · 仅供参考 · </span>
+        <a href="https://portal-chinalottery.com">中国竞彩网</a>
+    </footer>
+
+</body>
+</html>
